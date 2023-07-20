@@ -1,0 +1,81 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Mask, Unit2;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    Edit1: TEdit;
+    Label2: TLabel;
+    MaskEdit1: TMaskEdit;
+    Button1: TButton;
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure Edit1Exit(Sender: TObject);
+    procedure MaskEdit1Exit(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  tentativa:integer;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if Key = VK_RETURN then
+ Perform(WM_NEXTDLGCTL, 0, 0)end;
+
+procedure TForm1.Edit1Exit(Sender: TObject);
+begin
+if (edit1.text='') then
+begin
+ Showmessage('Preenchimento Deste Campo Obrigatório');
+ edit1.setfocus;
+end;
+end;
+
+procedure TForm1.MaskEdit1Exit(Sender: TObject);
+begin
+if (MaskEdit1.text='') then
+begin
+ Showmessage('Preenchimento Deste Campo Obrigatório');
+ edit1.setfocus;
+end;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+ If (edit1.Text ='1') And (MaskEdit1.Text='1') then
+ begin
+ Application.CreateForm(TForm2,Form2);
+ Form2.ShowModal;
+ end
+ else begin
+  if tentativa < 3 then
+  begin
+   Showmessage('Erro de Login ou Senha ');
+   Edit1.SetFocus;
+   MaskEdit1.Text:='';
+  tentativa:= tentativa + 1;
+ end
+ else begin
+  Showmessage('Muitas Tentativas Fechando ');
+  close;
+ end;
+end;
+end;
+
+end.
