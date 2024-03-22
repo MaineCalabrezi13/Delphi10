@@ -1,1 +1,4 @@
-<h4>Aqui estão algumas atividades realizadas em sala de aula utilizando Delphi 7.</h4>
+<h2>Atividades em Delphi 7 💕</h2>
+<h4>Este repositório contém atividades práticas desenvolvidas durante as aulas de programação 
+utilizando Delphi 7 no curso técnico em informática.</h4>
+
